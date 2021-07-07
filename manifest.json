@@ -7,6 +7,11 @@
       "matches": ["<all_urls>"],
       "js": ["scrap.js"]
     }],
+    "icons": {
+    "16": "ico.png",
+    "48": "ico.png",
+    "128": "ico.png"
+  },
     "browser_action":{
      "default_popup":"popup.html",
      "default_title":"LNHB2MCNP"
