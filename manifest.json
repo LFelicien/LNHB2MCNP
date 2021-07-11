@@ -4,7 +4,8 @@
   "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["http://www.nucleide.org/Laraweb/Results/*"],
+      "permission": ["http://www.nucleide.org/Laraweb/Results/*"],
       "js": ["scrap.js"]
     }],
     "icons": {
@@ -17,3 +18,4 @@
      "default_title":"LNHB2MCNP"
     }
     }
+    

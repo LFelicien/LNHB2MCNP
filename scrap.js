@@ -11,7 +11,6 @@ function copyToClipboard(text) {
     document.body.removeChild(dummy);
 }
 chrome.runtime.onMessage.addListener(function (request) {
-  //alert(request);
   var data=document.getElementsByTagName('pre')[0].innerHTML;
   var comment='cccccccccccccccccccccccccccc'
   var isotope='c ISOTOPE='
@@ -23,18 +22,21 @@ chrome.runtime.onMessage.addListener(function (request) {
   var isoname=data_list[0].split(';')[1];
   isotope+=isoname;
   for (let i = 15; i < data_list.length-2; i++) {
-  console.log(data_list[i]);
    split_data=data_list[i].split(';');
+   if(split_data[4]==' a ' && request.mylist[0] || split_data[4]==' g ' && request.mylist[1] || split_data[4].includes("X") && request.mylist[2] ){
    let Mev = (parseFloat(split_data[0])/1000).toFixed(6);
    si+=Mev.toString()+" ";
    sp+=split_data[2]+" ";
    wgt+=parseFloat(split_data[2]);
-}
+   };
+   
+} 
+  var cond='c  alpha='+request.mylist[0].toString()+' gamma='+request.mylist[1].toString()+' xray='+request.mylist[2].toString()+'\n';
   wgt_str+=(wgt/100).toFixed(4).toString()+'\n';
   isotope+=wgt_str;
   si+='\n';
   sp+='\n';
-  var result=comment+'\n'+isotope+comment+'\n'+si+sp+comment;
+  var result=comment+'\n'+isotope+cond+comment+'\n'+si+sp+comment;
   copyToClipboard(result);
   alert('MCNP script copied to clipboard!');
 })
